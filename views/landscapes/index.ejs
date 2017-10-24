@@ -1,0 +1,12 @@
+
+<h1>Landscapes</h1>
+
+<% landscapes.forEach((landscape)=> { %>
+  <li>
+    <h3><%= landscape.name%></h3>
+    <h3><%= landscape.location%></h3>
+    <h3><%= landscape.description%></h3>
+    <img src="<%= landscape.image%>">
+  </li>
+
+<% }) %>

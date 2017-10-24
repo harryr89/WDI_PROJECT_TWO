@@ -8,11 +8,13 @@ function registrationNew(req, res) {
 
 //function for new user
 function registrationCreate(req, res){
+  console.log('registrations create hit!');
   //creating new user logic
   User
     .create(req.body)
     .then((user) => {
-      req.redirect('/');
+      req.session.userId = user.id;
+      res.redirect('/login')
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

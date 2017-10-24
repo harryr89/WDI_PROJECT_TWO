@@ -11,14 +11,15 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="password" class="form-control">
   </div>
-  <div>
+  <%# Add the password confirmation bit onto the form just under the div with password%>
+  <div class="form-group">
     <label for="passwordConfirmation">Password Confirmation</label>
-    <input type="password" name="passwordConfirmation" id="passwordConfirmation">
+    <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control">
   </div>
   <button class="btn btn-primary">Register</button>
 </form>
 
-//error message for when passwords don't match 
-<% if (locals.message) { %>
-  <p><%= message %></p>
-<% } %>
+<%# //Now if the passwords don't match we will re-render the form, and send an error message, which we can display in the view like so:%>
+ <% if (locals.message) { %>
+   <p><%= message %></p>
+ <% } %>
