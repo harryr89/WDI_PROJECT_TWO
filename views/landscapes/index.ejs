@@ -9,7 +9,9 @@
         <img class="card-img-top" src="<%= landscape.image%>" alt="Card image cap">
         <div class="card-body">
           <h4 class="card-title"><%= landscape.name %><br><%= landscape.location%></h4>
+          <div class="dropdown-menu">
           <p class="card-text"><%= landscape.description%></p>
+          </div>
           <a href="/landscapes/<%= landscape.id %>" class="btn btn-primary">See this landscape</a>
         </div>
       </div>
