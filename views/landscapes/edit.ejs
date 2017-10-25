@@ -1,0 +1,22 @@
+<form method="POST" action="/landscapes/<%= landscape.id %>">
+<input type="hidden" name="_method" value="PUT">
+
+  <div class="form-group">
+   <label for="name">Name</label>
+   <input type="text" name="name" id="name" placeholder="name" class="form-control" value="<%= landscape.name %>">
+ </div>
+ <div class="form-group">
+   <label for="location">Location</label>
+   <input type="text" name="location" id="location" class="form-control" value="<%= landscape.location %>">
+ </div>
+ <div class="form-group">
+   <label for="description">Description</label>
+   <input type="text" name="description" id="description"  class="form-control" value="<%= landscape.description %>"></input>
+ </div>
+ <div class="form-group">
+   <label for="image">Image</label>
+   <input type="text" name="image" id="image"  class="form-control" value="<%= landscape.image %>"></input>
+ </div>
+<button>Edit landscape</buttom>
+</form>
+<a href="/index"><button type="button" name="button">Back</button></a>

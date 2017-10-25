@@ -14,12 +14,19 @@ function sessionCreate(req, res) {
       }
       //activity log for a current userId
       req.session.userId = user.id;
+      res.locals.user = user;
+      res.locals.isAuthenticated = true;
 
-      return res.redirect('/index');1
+      return res.redirect('/index');
     });
+}
+//when user clicks logout
+function sessionDelete(req, res) {
+  return req.session.regenerate(() => res.redirect('/'));
 }
 //Finally, module.exports it
 module.exports = {
   new: sessionNew,
-  create: sessionCreate
+  create: sessionCreate,
+  delete: sessionDelete
 };

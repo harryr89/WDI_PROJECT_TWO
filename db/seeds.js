@@ -4,6 +4,8 @@ const { dbUri } = require('../config/environment');
 const Landscape = require('../models/landscapes');
 mongoose.connect(dbUri, { useMongoClient: true });
 
+//REQUIRE THE SEEDS BY NODEDB/SEEDS.JS
+
 // Require the model
 Landscape.collection.drop();
 // Drop the model

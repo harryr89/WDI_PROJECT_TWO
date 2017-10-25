@@ -2,10 +2,16 @@ const express         = require('express');
 const router          = express.Router();
 const registration    = require('../controllers/registration');
 const session         = require('../controllers/session');
-const landscapes         = require('../controllers/landscapes');
+const landscapes      = require('../controllers/landscapes');
 
 // A home route
-router.get('/', (req, res) => res.render('homepage'));
+router.get('/', (req, res) => {
+  if (!req.session.userId) {
+    res.redirect('/login')
+  } else {
+    res.redirect('/index');
+  }
+});
 
 //registering a new user
 router.route('/register')
@@ -13,39 +19,27 @@ router.route('/register')
   .post(registration.create);
 
 //add routes for login
-  router.route('/login')
+router.route('/login')
   .get(session.new)
   .post(session.create);
-
-// RESTful routes
-// All URLS should contain the PLURAL... don't chose octopus or people or something silly.
-
-//USER CONTROLLERS
-//SHOW USERS
-// router.route('/users/:id')
-//   .get(users.show)
-
-//LANDSCAPE CONTROLLERS
-// INDEX
+//routes for logging out
+router.route('/logout')
+  .get(session.delete);
+//landscape pics
 router.route('/index')
-  .get(landscapes.index);
-// NEW
+  .get(landscapes.index)
+  .post(landscapes.create);
+
 router.route('/new')
   .get(landscapes.new);
-// SHOW landscapes
-router.route('/landscapes/:id')
-  .get(landscapes.new);
-// CREATE
-router.route('/landscapes')
-  .post(users.post);
-// EDIT
+
 router.route('/landscapes/:id/edit')
   .get(landscapes.edit);
-// UPDATE
+// // EDIT
 router.route('/landscapes/:id')
-  .put(landscapes.update);
-// DELETE
-router.route('/landscapes/:id')
+  .get(landscapes.show)
+  .put(landscapes.update)
   .delete(landscapes.delete);
+
 
 module.exports = router;

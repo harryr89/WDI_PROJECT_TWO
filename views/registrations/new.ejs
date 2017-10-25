@@ -19,6 +19,8 @@
   <button class="btn btn-primary">Register</button>
 </form>
 
+<p>Are you already registered? <a href="/login">Log In</a></p>
+
 <%# //Now if the passwords don't match we will re-render the form, and send an error message, which we can display in the view like so:%>
  <% if (locals.message) { %>
    <p><%= message %></p>

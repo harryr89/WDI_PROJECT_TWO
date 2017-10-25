@@ -1,12 +1,21 @@
 
 <h1>Landscapes</h1>
-
+<div class="row">
 <% landscapes.forEach((landscape)=> { %>
-  <li>
-    <h3><%= landscape.name%></h3>
-    <h3><%= landscape.location%></h3>
-    <h3><%= landscape.description%></h3>
-    <img src="<%= landscape.image%>">
-  </li>
+
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card landscape-cards">
+        <img class="card-img-top" src="<%= landscape.image%>" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title"><%= landscape.name %><br><%= landscape.location%></h4>
+          <p class="card-text"><%= landscape.description%></p>
+          <a href="/landscapes/<%= landscape.id %>" class="btn btn-primary">See this landscape</a>
+        </div>
+      </div>
+    </div>
+
+    
 
 <% }) %>
+</div>

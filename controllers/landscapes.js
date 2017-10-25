@@ -1,5 +1,6 @@
 const Landscape = require('../models/landscapes');
 
+//INDEX LANDSCAPE
 function landscapesIndex(req, res, next) {
   Landscape
   .find()
@@ -16,7 +17,7 @@ function landscapesShow(req, res, next) {
   .findById(req.params.id)
   // populate the field with the actual users data
   // .populate('createdBy comments.user')
-  .then((Landscape) => {
+  .then((landscape) => {
     if(!landscape) return res.status(404).render('statics/404');
     res.render('landscapes/show', { landscape });
   })
@@ -29,43 +30,45 @@ function landscapesCreate(req, res) {
       .then(() => {
         res.redirect('/index');
       });
-  }
-//edit landscapes pages
+    }
+// //edit landscapes pages
 function landscapesEdit(req, res) {
     Landscape
     .findById(req.params.id)
     .exec()
-    .then(profile => {
-    res.render('profiles/edit', { profile });
+    .then(landscape => {
+    res.render('landscapes/edit', { landscape });
   })
   .catch(err => {
     res.status(500).end(err);
   });
 }
 //UPDATE LANDSCAPE
-function landscapesUpdate(req, res, next) {
+function landscapesUpdate(req, res) {
   Landscape
   .findById(req.params.id)
   .then((landscape) => {
     if(!landscape) return res.status(404).render('statics/404');
 //what is this below?
     for(const field in req.body) {
-      profile[field] = req.body[field];
+      landscape[field] = req.body[field];
     }
-
-    return profile.save();
+    return landscape.save();
   })
-  .then((profile) => res.redirect(`/profiles/${profile.id}`))
-  .catch(next);
+  .then((landscape) => res.redirect(`/landscapes/${landscape.id}`))
+  .catch(err => {
+    res.status(500).end(err);
+  })
 }
 //DELETE A LANDSCAPE
-function profilesDelete(req, res, next) {
+function landscapesDelete(req, res, next) {
   Landscape
   .findById(req.params.id)
   .then((landscape) => {
-    if(!landscape) return res.status(404).render('statics/404');
-    return profile.remove();
+    if(!landscape) return res.status(404).render('problem 404');
+    return landscape.remove();
   })
+  //the landing page after the operation
   .then(() => res.redirect('/index'))
   .catch(next);
 }
@@ -73,32 +76,9 @@ function profilesDelete(req, res, next) {
 module.exports = {
   index:  landscapesIndex,
   new:    landscapesNew,
-  create: landscapesCreate,
   show:   landscapesShow,
+  create: landscapesCreate,
   edit:   landscapesEdit,
   update: landscapesUpdate,
   delete: landscapesDelete
 }
-
-// //LANDSCAPE CONTROLLERS
-// // INDEX
-// router.route('/index')
-//   .get(landscapes.index);
-// // NEW
-// router.route('/new')
-//   .get(landscapes.new);
-// // SHOW landscapes
-// router.route('/landscapes/:id')
-//   .get(landscapes.new);
-// // CREATE
-// router.route('/landscapes')
-//   .post(users.post);
-// // EDIT
-// router.route('/landscapes/:id/edit')
-//   .get(landscapes.edit);
-// // UPDATE
-// router.route('/landscapes/:id')
-//   .put(landscapes.update);
-// // DELETE
-// router.route('/landscapes/:id')
-//   .delete(landscapes.delete);
