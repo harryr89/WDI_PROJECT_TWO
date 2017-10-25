@@ -24,7 +24,26 @@ Landscape
     location:  'Aldgate East',
     description: 'A building',
     image: 'http://www.allsop.co.uk/resources/2016/01/Relay-exterior-850x628.jpg'
-  }])
+  },
+  {
+    name: 'Relay Building',
+    location:  'Aldgate East',
+    description: 'A building',
+    image: 'http://www.allsop.co.uk/resources/2016/01/Relay-exterior-850x628.jpg'
+  },
+  {
+    name: 'Relay Building',
+    location:  'Aldgate East',
+    description: 'A building',
+    image: 'http://www.allsop.co.uk/resources/2016/01/Relay-exterior-850x628.jpg'
+  },
+  {
+    name: 'Relay Building',
+    location:  'Aldgate East',
+    description: 'A building',
+    image: 'http://www.allsop.co.uk/resources/2016/01/Relay-exterior-850x628.jpg'
+  }
+])
 .then(landscapes=> console.log(`${landscapes.length} ladscapes were created`))
   .catch((err) =>{
     console.log(err);
