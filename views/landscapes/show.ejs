@@ -1,14 +1,16 @@
 <div>
-<div class="card text-center" style="width: 20rem;">
-  <img class="card-img-top" src="<%= landscape.image%>" alt="Card image cap">
+<div class="card text-center" style="width: 40rem; height 40rem;">
+  <img class="card-img-top showWidth" src="<%= landscape.image%>" alt="Card image cap">
   <div class="card-body">
     <h4 class="card-title"><%= landscape.name %><br><%= landscape.location%></h4>
     <p class="card-text"><%= landscape.description%></p>
   </div>
+  <div class="widthButton">
   <a href="/landscapes/<%= landscape.id %>/edit " class="btn btn-primary">EDIT</a>
   <form method="POST" action="/landscapes/<%= landscape.id %>">
     <input type="hidden" name="_method" value="DELETE">
     <button name="button" class="btn btn-primary btn-lg btn-block">delete</button>
   </form>
+  </div>
 </div>
 </div>
